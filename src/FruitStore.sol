@@ -41,9 +41,7 @@ contract FruitStore {
     }
 
     // Get fruit details
-    function getFruit(
-        uint256 fruitIndex
-    ) external view returns (string memory, uint256, uint256) {
+    function getFruit(uint256 fruitIndex) external view returns (string memory, uint256, uint256) {
         require(fruitIndex < 5, "Invalid fruit index");
         Fruit storage fruit = fruits[fruitIndex];
         return (fruit.name, fruit.price, fruit.quantity);
