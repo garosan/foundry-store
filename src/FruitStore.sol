@@ -13,11 +13,9 @@ contract FruitStore {
     event FruitPurchased(string name, uint256 quantity, uint256 price);
 
     constructor() {
-        fruits[0] = Fruit("Apple", 0.001 ether, 50);
-        fruits[1] = Fruit("Banana", 0.002 ether, 50);
-        fruits[2] = Fruit("Orange", 0.003 ether, 50);
-        fruits[3] = Fruit("Lemon", 0.004 ether, 50);
-        fruits[4] = Fruit("Mango", 0.005 ether, 50);
+        fruits[0] = Fruit("Apple", 0.0001 ether, 5);
+        fruits[1] = Fruit("Banana", 0.0002 ether, 5);
+        fruits[2] = Fruit("Orange", 0.0003 ether, 5);
     }
 
     // Buy a fruit function
