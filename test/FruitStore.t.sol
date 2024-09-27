@@ -11,7 +11,7 @@ contract FruitStoreTest is Test {
         fruitStore = new FruitStore();
     }
 
-    function buyFruit() public {
+    function testbuyFruit() public {
         uint256 fruitIndex = 0;
         uint256 quantity = 1;
         uint256 price = 0.001 ether;
@@ -20,5 +20,14 @@ contract FruitStoreTest is Test {
 
         (,, uint256 newQuantity) = fruitStore.getFruit(fruitIndex);
         assertEq(newQuantity, 49, "Quantity should be 49 after purchase");
+    }
+
+    function testBuyFruitNotEnoughEther() public {
+        uint256 fruitIndex = 1;
+        uint256 quantity = 1;
+        uint256 price = 0.001 ether;
+
+        vm.expectRevert("Insufficient Ether sent");
+        fruitStore.buyFruit{value: price}(fruitIndex, quantity);
     }
 }
