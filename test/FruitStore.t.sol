@@ -19,7 +19,7 @@ contract FruitStoreTest is Test {
         fruitStore.buyFruit{value: price}(fruitIndex, quantity);
 
         (,, uint256 newQuantity) = fruitStore.getFruit(fruitIndex);
-        assertEq(newQuantity, 4, "Quantity should be 4 after purchase");
+        assertEq(newQuantity, 3, "Quantity should be 3 after purchase");
     }
 
     function testBuyFruitNotEnoughEther() public {

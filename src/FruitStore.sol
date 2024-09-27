@@ -8,19 +8,19 @@ contract FruitStore {
         uint256 quantity;
     }
 
-    Fruit[5] public fruits;
+    Fruit[] public fruits;
 
     event FruitPurchased(string name, uint256 quantity, uint256 price);
 
     constructor() {
-        fruits[0] = Fruit("Apple", 0.0001 ether, 5);
-        fruits[1] = Fruit("Banana", 0.0002 ether, 5);
-        fruits[2] = Fruit("Orange", 0.0003 ether, 5);
+        fruits.push(Fruit("Apple", 0.0001 ether, 4));
+        fruits.push(Fruit("Banana", 0.0002 ether, 4));
+        fruits.push(Fruit("Orange", 0.0003 ether, 4));
     }
 
     // Buy a fruit function
     function buyFruit(uint256 fruitIndex, uint256 quantity) external payable {
-        require(fruitIndex < 5, "Invalid fruit index");
+        require(fruitIndex < fruits.length, "Invalid fruit index");
         require(quantity > 0, "Quantity must be greater than zero");
 
         Fruit storage fruit = fruits[fruitIndex];
@@ -40,13 +40,8 @@ contract FruitStore {
 
     // Get fruit details
     function getFruit(uint256 fruitIndex) external view returns (string memory, uint256, uint256) {
-        require(fruitIndex < 5, "Invalid fruit index");
+        require(fruitIndex < 3, "Invalid fruit index");
         Fruit storage fruit = fruits[fruitIndex];
         return (fruit.name, fruit.price, fruit.quantity);
-    }
-
-    // Function to retrieve funds (only owner)
-    function withdraw() external {
-        payable(msg.sender).transfer(address(this).balance);
     }
 }
